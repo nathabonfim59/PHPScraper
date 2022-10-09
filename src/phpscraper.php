@@ -28,6 +28,11 @@ class phpscraper
     protected $core = null;
 
     /**
+     * Holds the API, if set
+     */
+    public $api = null;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -62,6 +67,25 @@ class phpscraper
         } else {
             return $this->core->$name(...$arguments);
         }
+    }
+
+    /**
+     * Sets an API with preconfigured methods
+     * to scrap common sites.
+     *
+     * Check out the documentation for a complete list
+     * @see [docs_here]
+     *
+     *
+     * @param string $api
+     */
+    public function setApi($api)
+    {
+        $apiClass = __NAMESPACE__ . '\apis\\' . $api;
+
+        $this->api = new $apiClass($this->core);
+
+        return $this;
     }
 }
 
