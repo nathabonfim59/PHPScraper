@@ -18,6 +18,9 @@ use DonatelloZa\RakePlus\RakePlus;
 // https://symfony.com/doc/current/http_client.html
 use Symfony\Component\HttpClient\HttpClient;
 
+// Web scrapping APIs
+use spekulatius\apis\mercado_libre;
+
 class phpscraper
 {
     /**
@@ -29,6 +32,8 @@ class phpscraper
 
     /**
      * Holds the API, if set
+     *
+     * @var mercado_libre $api
      */
     public $api = null;
 
