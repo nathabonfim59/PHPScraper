@@ -206,6 +206,65 @@ class mercado_libre
     }
 
     /**
+     * Get the link of the next page in search results
+     *
+     * @return string|null
+     */
+    public function nextPage()
+    {
+        $nextLink = $this->core
+            ->filter('//li[contains(@class, "andes-pagination__button--next")]')
+            ->children()
+            ->attr('href');
+
+        return $nextLink ?? null;
+    }
+
+
+    /**
+     * Get the link of the previous page in search results
+     *
+     * @return string|null
+     */
+    public function previousPage()
+    {
+        $previousLink = $this->core
+            ->filter('//li[contains(@class, "andes-pagination__button--back")]')
+            ->children()
+            ->attr('href');
+
+        return $previousLink ?? null;
+    }
+
+    /**
+     * Navigate to the next page
+     *
+     * @return string|null
+     */
+    public function goNextPage()
+    {
+        $link = $this->nextPage();
+
+        if (!$link) return;
+
+        $this->core->go($link);
+    }
+
+    /**
+     * Navigate to the previous page
+     *
+     * @return string|null
+     */
+    public function goPreviousPage()
+    {
+        $link = $this->previousPage();
+
+        if (!$link) return;
+
+        $this->core->go($link);
+    }
+
+    /**
      * Get the product Id
      *
      * @return string|null
