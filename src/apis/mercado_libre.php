@@ -179,6 +179,33 @@ class mercado_libre
     }
 
     /**
+     * Get all the products in a search page
+     *
+     * Supported:
+     * - search results
+     * - seller page
+     *
+     * @return array|null
+     */
+    public function getProductLinksSearch()
+    {
+        $links = [];
+        $productCards = $this->core->filter('//div[contains(@class, "ui-search-result--core")]');
+
+        foreach ($productCards as $cardNode) {
+            $card = new Crawler($cardNode);
+
+            $productLink = $card
+                ->filterXPath('//a[@class="ui-search-link"]')
+                ->attr('href');
+
+            $links[] =$productLink;
+        }
+
+        return $links ?? null;
+    }
+
+    /**
      * Get the product Id
      *
      * @return string|null
