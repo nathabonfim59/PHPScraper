@@ -124,6 +124,25 @@ require 'vendor/autoload.php';
 If you are using a framework such as Laravel, Symfony, Laminas, Phalcon, or CakePHP, you won't need this step. The autoloader is automatically included.
 
 
+Configuration
+-------------
+
+Further configuration is optional. Below are the correctly available options.
+
+### Proxy Support
+
+If you require proxies, you can configure the proxy support with `setProxy`:
+
+```php
+$web = new \spekulatius\phpscraper;
+$web->setProxy('http://user:password@127.0.0.1:3128');
+```
+
+::: tip
+If you're looking for decent prices residential proxy, check [IProyal](https://iproyal.com?r=119987).
+:::
+
+
 Found a bug and fixed it? Awesome!
 ----------------------------------
 
